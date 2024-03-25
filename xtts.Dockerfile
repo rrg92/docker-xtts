@@ -6,9 +6,9 @@ RUN apk add git
 RUN apk add ffmpeg
 
 WORKDIR /xtts-server
-COPY ./xtts-streaming-server/test/requirements.txt ./reqs.txt --break-system-packages
+COPY ./xtts-streaming-server/test/requirements.txt ./reqs.txt 
 
-RUN python -m pip install -r ./reqs.txt
+RUN python -m pip install -r ./reqs.txt --break-system-packages
 
 COPY ./xtts-streaming-server ./
 
