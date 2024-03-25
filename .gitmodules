@@ -1,3 +1,0 @@
-[submodule "xtts-streaming-server"]
-	path = xtts-streaming-server
-	url = https://github.com/coqui-ai/xtts-streaming-server
