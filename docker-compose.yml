@@ -1,0 +1,50 @@
+name: webui-docker
+
+volumes:
+    servel-model-root:
+
+services:
+
+    server:
+        image: ghcr.io/coqui-ai/xtts-streaming-server:latest-cuda121
+        environment:
+            COQUI_TOS_AGREED: 1
+            CUSTOM_MODEL_PATH: /root/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2
+        ports:
+            - 8000:80
+        expose:
+            - 80
+        volumes:
+            - type: volume
+              source: servel-model-root
+              target: /root/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        deploy:
+          resources:
+            reservations:
+              devices:
+                - driver: nvidia
+                  count: all
+                  capabilities: [gpu]
+        healthcheck:
+          test: wget --no-verbose --tries=1 http://localhost || exit 1 
+          interval: 5s
+          timeout: 30s
+          retries: 3
+          start_period: 5m 
+              
+    xtts:
+        build: 
+            context: .
+            dockerfile: xtts.Dockerfile
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        ports:
+            - 3009:3009
+        depends_on:
+            server:
+                condition: service_healthy
+            
+  
+       
