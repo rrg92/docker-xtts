@@ -35,9 +35,7 @@ services:
           start_period: 5m 
               
     xtts:
-        build: 
-            context: .
-            dockerfile: xtts.Dockerfile
+        image: rrg92/ia-talking:xtts-interface
         stdin_open: true # docker run -i
         tty: true        # docker run -t
         ports:
