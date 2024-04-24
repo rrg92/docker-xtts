@@ -1,3 +1,13 @@
+---
+title: Xtts
+emoji: 👀
+colorFrom: green
+colorTo: indigo
+sdk: docker
+pinned: false
+license: apache-2.0
+---
+
 # Instruções
 
 Você precisa configurar o seu ambiente com docker. Veja abaixo algumas orientações para isso.  
@@ -40,6 +50,5 @@ Além disso, eu já tinha instalado os drivers da NVIDIA conforme este link: htt
 - Porém, podem aparecer mais opções na interface, que não apareciam antes!
 - Caso tenha dificuldades, pode abrir uma issue, comentar no vídeo ou no blog, que ajudo!
 - Em breve gravarei um vídeo sobre as mudanças
-
 
 
