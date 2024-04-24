@@ -6,7 +6,7 @@ volumes:
 services:
 
     server:
-        image: ghcr.io/coqui-ai/xtts-streaming-server:latest-cuda121
+        image: rrg92/ia-talking:xtts-server2
         environment:
             COQUI_TOS_AGREED: 1
             CUSTOM_MODEL_PATH: /root/.local/share/tts/tts_models--multilingual--multi-dataset--xtts_v2
@@ -36,10 +36,12 @@ services:
               
     xtts:
         image: rrg92/ia-talking:xtts-interface
+        environment:
+            XTTS_SERVER: http://server
         stdin_open: true # docker run -i
         tty: true        # docker run -t
         ports:
-            - 3009:3009
+            - 3009:80
         depends_on:
             server:
                 condition: service_healthy

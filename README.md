@@ -32,4 +32,14 @@ Além disso, eu já tinha instalado os drivers da NVIDIA conforme este link: htt
 
 
 
+## Atualizações
+
+* **2024-04-24**
+- Eu fiz algumas customizações em relação ao original que postei no vide do canal IATalking.  
+- Em tese, seguindo os mesmos passos do vídeo, vai continuar funcionando
+- Porém, podem aparecer mais opções na interface, que não apareciam antes!
+- Caso tenha dificuldades, pode abrir uma issue, comentar no vídeo ou no blog, que ajudo!
+- Em breve gravarei um vídeo sobre as mudanças
+
+
 

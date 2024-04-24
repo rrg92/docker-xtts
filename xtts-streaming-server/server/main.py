@@ -147,6 +147,10 @@ class TTSInputs(BaseModel):
     gpt_cond_latent: List[List[float]]
     text: str
     language: str
+    temperature: float
+    speed: float
+    top_k: int
+    top_p: float
 
 @app.post("/tts")
 def predict_speech(parsed_input: TTSInputs):
@@ -154,12 +158,25 @@ def predict_speech(parsed_input: TTSInputs):
     gpt_cond_latent = torch.tensor(parsed_input.gpt_cond_latent).reshape((-1, 1024)).unsqueeze(0)
     text = parsed_input.text
     language = parsed_input.language
-
+    temperature = parsed_input.temperature
+    speed = parsed_input.speed
+    top_k = parsed_input.top_k
+    top_p = parsed_input.top_p
+    length_penalty = 1.0
+    repetition_penalty= 2.0
+    
+    
     out = model.inference(
         text,
         language,
         gpt_cond_latent,
         speaker_embedding,
+        temperature,
+        length_penalty,
+        repetition_penalty,
+        top_k,
+        top_p,
+        speed,
     )
 
     wav = postprocess(torch.tensor(out["wav"]))
